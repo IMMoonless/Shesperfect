@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para ti, mi amor 🌹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0b0e;
+      --bg2: #13101a;
+      --bg3: #1a1524;
+      --rose: #c8607a;
+      --rose-light: #e8849a;
+      --gold: #c9a96e;
+      --gold-light: #e8c98e;
+      --text: #e8e0d8;
+      --text-muted: #8a7f80;
+      --border: rgba(200, 96, 122, 0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Fondo con textura ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200,96,122,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, rgba(201,169,110,0.05) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header / Hero ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0;
+      animation: floatUp var(--dur, 8s) var(--delay, 0s) infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+      20%  { opacity: 0.4; }
+      80%  { opacity: 0.2; }
+      100% { opacity: 0; transform: translateY(-80vh) translateX(var(--drift, 30px)) scale(1.2); }
+    }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+      animation-delay: 0.2s;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, var(--text) 30%, var(--rose-light) 70%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 0.9s ease forwards;
+      opacity: 0;
+      animation-delay: 0.4s;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .tagline {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.8;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.7s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      animation-delay: 1.2s;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--rose), transparent);
+      animation: scrollLine 2s infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Secciones generales ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 60px;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    h2 em { font-style: italic; color: var(--rose-light); }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #b0a8a8;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Separador decorativo ── */
+    .divider {
+      text-align: center;
+      color: var(--rose);
+      font-size: 1.2rem;
+      letter-spacing: 0.6em;
+      opacity: 0.4;
+      padding: 1rem 0;
+    }
+
+    /* ── Galería de fotos ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.5rem 0;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .photo-card:first-child {
+      aspect-ratio: 3/4;
+      margin-top: 2rem;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(200, 96, 122, 0.15);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo-card:hover img { transform: scale(1.04); }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .photo-placeholder .icon {
+      font-size: 2.5rem;
+      opacity: 0.4;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.2rem;
+      background: linear-gradient(to top, rgba(13,11,14,0.9), transparent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--gold-light);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .photo-card:hover .photo-caption { opacity: 1; }
+
+    /* ── Video ── */
+    .video-wrapper {
+      margin: 2.5rem 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      position: relative;
+    }
+
+    .video-wrapper video,
+    .video-wrapper iframe {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      color: var(--text-muted);
+      background: var(--bg3);
+    }
+
+    .video-play {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--rose);
+      opacity: 0.5;
+    }
+
+    /* ── Razones / lista ── */
+    .reasons {
+      display: grid;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .reason-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.8rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .reason-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--rose), var(--gold));
+      transform: scaleY(0);
+      transition: transform 0.4s ease;
+    }
+
+    .reason-card:hover::before { transform: scaleY(1); }
+    .reason-card:hover {
+      border-color: rgba(200, 96, 122, 0.3);
+      transform: translateX(4px);
+    }
+
+    .reason-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--rose);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .reason-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .reason-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ── Quote ── */
+    .quote-block {
+      border-left: 1px solid var(--rose);
+      padding: 1.5rem 2rem;
+      margin: 3rem 0;
+      background: linear-gradient(to right, rgba(200,96,122,0.05), transparent);
+    }
+
+    .quote-block blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+
+    .heart-big {
+      font-size: 2rem;
+      animation: heartbeat 2s infinite ease-in-out;
+      display: inline-block;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.2); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+      56% { transform: scale(1); }
+    }
+
+    .footer-text {
+      margin-top: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr; }
+      .photo-card:first-child { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Partículas flotantes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+          left: ${Math.random()*100}%;
+          top: ${Math.random()*100}%;
+          --dur: ${6 + Math.random()*8}s;
+          --delay: ${Math.random()*6}s;
+          --drift: ${(Math.random()-0.5)*80}px;
+          width: ${3 + Math.random()*5}px;
+          height: ${3 + Math.random()*5}px;
+          opacity: 0;
+        `;
+        document.querySelector('header').appendChild(p);
+      }
+    });
+  </script>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header>
+    <p class="eyebrow">✦ Una historia de amor ✦</p>
+    <h1>Todo lo que<br/><em>amo de ti</em></h1>
+    <p class="tagline">
+      Un pequeño rincón del internet dedicado enteramente a ti,<br/>
+      a tu sonrisa y a todo lo que me hace feliz de tenerte.
+    </p>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Descubre
+    </div>
+  </header>
+
+  <!-- ══════════ FOTOS ══════════ -->
+  <section>
+    <p class="section-label">📷 Momentos</p>
+    <h2>Fotografías <em>que guardo</em><br/>en el corazón</h2>
+    <p>
+      Cada foto contigo guarda un momento que no quiero olvidar jamás.
+      Aquí van dos de mis favoritas.
+    </p>
+
+    <div class="gallery">
+
+      <!-- Foto 1 — reemplaza el bloque img cuando tengas la foto -->
+      <div class="photo-card">
+        <!-- OPCIÓN A: placeholder hasta que tengas la imagen -->
+        <div class="photo-placeholder">
+          <span class="icon">🌹</span>
+          <span>Reemplaza esto con:<br/><code>imagen1.jpg</code></span>
+        </div>
+        <!-- OPCIÓN B: descomenta y ajusta la ruta cuando tengas la foto
+        <img src="imagen1.jpg" alt="Foto 1" />
+        -->
+        <span class="photo-caption">Tu primera foto aquí</span>
+      </div>
+
+      <!-- Foto 2 -->
+      <div class="photo-card">
+        <div class="photo-placeholder">
+          <span class="icon">💫</span>
+          <span>Reemplaza esto con:<br/><code>imagen2.jpg</code></span>
+        </div>
+        <!-- <img src="imagen2.jpg" alt="Foto 2" /> -->
+        <span class="photo-caption">Tu segunda foto aquí</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">· · · ♡ · · ·</div>
+
+  <!-- ══════════ VIDEO ══════════ -->
+  <section>
+    <p class="section-label">🎬 Video especial</p>
+    <h2>Un momento<br/><em>en movimiento</em></h2>
+    <p>
+      Las fotos capturan un instante, pero el video captura algo más: tu risa,
+      tu voz, los pequeños gestos que solo yo noto.
+    </p>
+
+    <div class="video-wrapper">
+      <!-- Placeholder: reemplaza con tu video real -->
+      <div class="video-placeholder">
+        <div class="video-play">▶</div>
+        <p style="margin:0; font-size:0.85rem;">
+          Reemplaza esto con tu etiqueta de video:<br/>
+          <code style="font-size:0.75rem; color:var(--rose);">&lt;video src="tu-video.mp4" controls&gt;&lt;/video&gt;</code>
+        </p>
+      </div>
+
+      <!-- CUANDO TENGAS EL VIDEO, borra el placeholder de arriba y descomenta:
+      <video controls>
+        <source src="tu-video.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+      -->
+    </div>
+  </section>
+
+  <div class="divider">· · · ♡ · · ·</div>
+
+  <!-- ══════════ RAZONES ══════════ -->
+  <section>
+    <p class="section-label">💌 Razones</p>
+    <h2>Las cosas que<br/><em>más amo</em> de ti</h2>
+    <p>
+      No bastarían mil páginas para describir todo lo que admiro en ti,
+      pero aquí van algunas de mis razones favoritas.
+    </p>
+
+    <div class="reasons">
+      <div class="reason-card">
+        <div class="reason-number">01</div>
+        <div class="reason-title">Tu sonrisa</div>
+        <p class="reason-desc">
+          Hay algo en tu sonrisa que hace que todo lo demás deje de importar.
+          Es la primera cosa que busco cada vez que estamos juntos.
+          <!-- ✏️ Personaliza este texto -->
+        </p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-number">02</div>
+        <div class="reason-title">Tu forma de ser</div>
+        <p class="reason-desc">
+          La manera en que tratas a los demás, tu calidez y tu autenticidad
+          son cosas que me enamoran cada día más.
+          <!-- ✏️ Personaliza este texto -->
+        </p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-number">03</div>
+        <div class="reason-title">Los momentos contigo</div>
+        <p class="reason-desc">
+          Cada momento a tu lado, por pequeño que sea, se convierte
+          en un recuerdo que quiero guardar para siempre.
+          <!-- ✏️ Personaliza este texto -->
+        </p>
+      </div>
+      <!-- ➕ Puedes agregar más tarjetas copiando el bloque anterior -->
+    </div>
+  </section>
+
+  <!-- ══════════ CITA ══════════ -->
+  <section>
+    <div class="quote-block">
+      <blockquote>
+        "Eres la persona con quien quiero compartir todas mis conversaciones imposibles."
+        <!-- ✏️ Cambia esta cita por algo personal -->
+      </blockquote>
+      <cite>— Con todo mi amor</cite>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="heart-big">♡</div>
+    <p class="footer-text">Hecho con amor, solo para ti.</p>
+  </footer>
+
+</body>
+</html>
